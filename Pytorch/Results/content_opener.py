@@ -26,7 +26,6 @@ class Labels:
         self.dataset = settings.dataset
         self.net = settings.net
         self.optimizer = settings.optimizer
-        self.cycle = settings.cycle
         self.decay = self.label_decay()
         self.cycle = self.label_cycle()
         self.max_lr = self.label_max_lr()
