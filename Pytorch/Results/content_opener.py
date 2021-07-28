@@ -1,4 +1,5 @@
 import csv
+from typing import List
 
 
 class Values:
@@ -122,3 +123,10 @@ def open_contents(settings: Settings) -> Results:
     values = Values(train_loss, val_loss, val_accuracy, lr_history)
 
     return Results(settings, values)
+
+
+def open_all_contents(settings_list: List[Settings]) -> List[Results]:
+    results = []
+    for settings in settings_list:
+        results.append(open_contents(settings))
+    return results
