@@ -29,8 +29,8 @@ class Labels:
         self.optimizer = settings.optimizer
         self.decay = self.label_decay()
         self.cycle = self.label_cycle()
-        self.max_lr = self.label_max_lr()
         self.initial_lr = self.label_initial_lr()
+        self.max_lr = self.label_max_lr()
         self.batch_size = self.label_batch_size()
 
     def label_decay(self) -> str:
@@ -50,19 +50,19 @@ class Labels:
         else:
             return self.settings.cycle
 
-    def label_max_lr(self) -> str:
-        if '-' in self.settings.lr:
-            return self.settings.lr.split('-')[-1]
-        elif '=' in self.settings.lr:
-            return self.settings.lr.split('=')[-1]
-        raise ValueError('unresolved title for lr')
-
     def label_initial_lr(self):
         if '=' in self.settings.lr:
             if '-' in self.settings.lr:
                 return self.settings.lr.split('=')[-2]
             else:
                 return self.settings.lr.split('=')[-1]
+        raise ValueError('unresolved title for lr')
+
+    def label_max_lr(self) -> str:
+        if '-' in self.settings.lr:
+            return self.settings.lr.split('-')[-1]
+        elif '=' in self.settings.lr:
+            return self.settings.lr.split('=')[-1]
         raise ValueError('unresolved title for lr')
 
     def label_batch_size(self):
