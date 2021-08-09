@@ -79,6 +79,14 @@ class Results:
     def get_labels(self) -> Labels:
         return Labels(self.settings)
 
+    def to_one_cycle(self):
+        if self.settings.cycle != 'constantLR':
+            cycle_length = int(self.settings.cycle.split('-')[0])
+            self.values.lr_history = self.values.lr_history[:cycle_length]
+            self.values.val_accuracy = self.values.val_accuracy[:cycle_length]
+            self.values.train_loss = self.values.train_loss[:cycle_length]
+            self.values.val_loss = self.values.val_accuracy[:cycle_length]
+            
 
 def open_contents(settings: Settings) -> Results:
     dataset = settings.dataset
