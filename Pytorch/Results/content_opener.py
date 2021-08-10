@@ -85,7 +85,7 @@ class Results:
             self.values.lr_history = self.values.lr_history[:cycle_length]
             self.values.val_accuracy = self.values.val_accuracy[:cycle_length]
             self.values.train_loss = self.values.train_loss[:cycle_length]
-            self.values.val_loss = self.values.val_accuracy[:cycle_length]
+            self.values.val_loss = self.values.val_loss[:cycle_length]
             
 
 def open_contents(settings: Settings) -> Results:
