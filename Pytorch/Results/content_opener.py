@@ -47,6 +47,8 @@ class Labels:
     def label_cycle(self) -> str:
         if self.settings.cycle == 'constantLR':
             return 'constant lr'
+        elif self.settings.cycle == 'calculatedLR':
+            return 'calculated lr'
         else:
             return self.settings.cycle
 
@@ -80,7 +82,7 @@ class Results:
         return Labels(self.settings)
 
     def to_one_cycle(self):
-        if self.settings.cycle != 'constantLR':
+        if self.settings.cycle != 'constantLR' and self.settings.cycle != 'calculatedLR':
             cycle_length = int(self.settings.cycle.split('-')[0])
             self.values.lr_history = self.values.lr_history[:cycle_length]
             self.values.val_accuracy = self.values.val_accuracy[:cycle_length]
