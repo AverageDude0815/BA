@@ -55,7 +55,7 @@ class Labels:
     def label_initial_lr(self):
         if '=' in self.settings.lr:
             if '-' in self.settings.lr:
-                return self.settings.lr.split('=')[-2]
+                return self.settings.lr.split('=')[-1].split('-')[0]
             else:
                 return self.settings.lr.split('=')[-1]
         raise ValueError('unresolved title for lr')
