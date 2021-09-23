@@ -48,7 +48,7 @@ class Labels:
         if self.settings.cycle == 'constantLR':
             return 'constant'
         elif self.settings.cycle == 'calculatedLR':
-            return 'calculated lr'
+            return 'calculated'
         elif self.settings.cycle == 'decayingLR':
             return 'decay'
         elif self.settings.cycle == 'randomLR':
@@ -59,23 +59,23 @@ class Labels:
     def label_initial_lr(self):
         if '=' in self.settings.lr:
             if '-' in self.settings.lr:
-                return ' lr$\in$[' + self.settings.lr.split('=')[-1].split('-')[0]
+                return ' $\\alpha\in$[' + self.settings.lr.split('=')[-1].split('-')[0]
             else:
-                if self.cycle == 'calculated lr':
+                if self.cycle == 'calculated':
                     if 'None' in self.settings.lr:
                         return ''
-                    return ' lr_max=' + self.settings.lr.split('=')[-1]
+                    return ' $\\alpha_{max}$=' + self.settings.lr.split('=')[-1]
                 else:
-                    return ' lr=' + self.settings.lr.split('=')[-1]
+                    return ' $\\alpha=' + self.settings.lr.split('=')[-1] + '$'
         raise ValueError('unresolved title for lr')
 
     def label_max_lr(self) -> str:
-        if self.cycle == 'constant' or self.cycle == 'calculated lr':
+        if self.cycle == 'constant' or self.cycle == 'calculated':
             return ''
         if '-' in self.settings.lr:
-            return ', ' + self.settings.lr.split('-')[-1] + ']'
+            return '$, ' + self.settings.lr.split('-')[-1] + ']$'
         elif '=' in self.settings.lr:
-            return ', ' + self.settings.lr.split('=')[-1] + ']'
+            return '$, ' + self.settings.lr.split('=')[-1] + ']$'
         raise ValueError('unresolved title for lr')
 
     def label_batch_size(self):
