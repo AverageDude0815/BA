@@ -48,7 +48,7 @@ class Labels:
         if self.settings.cycle == 'constantLR':
             return 'constant'
         elif self.settings.cycle == 'calculatedLR':
-            return 'calculated'
+            return ''
         elif self.settings.cycle == 'decayingLR':
             return 'decay'
         elif self.settings.cycle == 'randomLR':
@@ -70,7 +70,7 @@ class Labels:
         raise ValueError('unresolved title for lr')
 
     def label_max_lr(self) -> str:
-        if self.cycle == 'constant' or self.cycle == 'calculated':
+        if self.settings.cycle == 'constantLR' or self.settings.cycle == 'calculatedLR':
             return ''
         if '-' in self.settings.lr:
             return '$, ' + self.settings.lr.split('-')[-1] + ']$'
